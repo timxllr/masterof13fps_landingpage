@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:clipboard_manager/clipboard_manager.dart';
 
 void main() {
   runApp(MyApp());
 }
+
+String ip = "mc.masterof13fps.com:25565";
+String anticheats = "Intave, AAC, NCP, Spartan\n"
+    "ThotPatrol, Matrix, Horizon, Negativity";
+
+String appDlAndroid = "https://anonfiles.com/z855JdZ2o2/MasterOf13FPS_apk";
 
 class MyApp extends StatelessWidget {
   @override
@@ -579,20 +587,134 @@ class _HomeState extends State<Home> {
       ],
     );
 
+    AlertDialog testServer = AlertDialog(
+      title: Text("TestServer"),
+      content: Container(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(
+                  "Wir stellen euch ab sofort einen offiziellen TestServer bereit!",
+                  style: TextStyle(fontSize: 22),
+                  textAlign: TextAlign.center),
+              SizedBox(height: 15),
+              Text("IP:",
+                  style: TextStyle(
+                      fontSize: 20, decoration: TextDecoration.underline),
+                  textAlign: TextAlign.center),
+              Text(ip,
+                  style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+              SizedBox(height: 10),
+              Text("AntiCheats:",
+                  style: TextStyle(
+                      fontSize: 20, decoration: TextDecoration.underline),
+                  textAlign: TextAlign.center),
+              Text(anticheats,
+                  style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        FlatButton(
+          child: Text("IP kopieren"),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12))),
+          color: Color.fromARGB(255, 0, 135, 220),
+          onPressed: () {
+            Clipboard.setData(
+                new ClipboardData(text: "mc.masterof13fps.com:25565"));
+          },
+        ),
+        FlatButton(
+          child: Text("Ok"),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12))),
+          color: Color.fromARGB(255, 0, 135, 220),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ],
+    );
+
+    AlertDialog app = AlertDialog(
+      title: Text("App"),
+      content: Container(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(
+                  "Wir haben eine exklusive App entwickelt - für eine bessere Benutzererfahrung!",
+                  style: TextStyle(fontSize: 22),
+                  textAlign: TextAlign.center),
+              SizedBox(height: 15),
+              Text("App-Informationen:",
+                  style: TextStyle(
+                      fontSize: 20, decoration: TextDecoration.underline),
+                  textAlign: TextAlign.center),
+              Text(
+                  "Entwickler: CrazyMemeCoke\n"
+                  "Version: 1.0 (vom 27. September 2020)",
+                  style: TextStyle(fontSize: 18),
+                  textAlign: TextAlign.center),
+              SizedBox(height: 10),
+              Text("Unterstützte Plattformen:",
+                  style: TextStyle(
+                      fontSize: 20, decoration: TextDecoration.underline),
+                  textAlign: TextAlign.center),
+              Text(
+                  "- Android (ab Version 5.0 und höher)\n"
+                  "- (Soon) iOS (ab Version 11 und höher)\n"
+                  "- (Soon) Windows (ab Vista und höher)",
+                  style: TextStyle(fontSize: 18),
+                  textAlign: TextAlign.center),
+              SizedBox(height: 10),
+              Text("Exklusive Features:",
+                  style: TextStyle(
+                      fontSize: 20, decoration: TextDecoration.underline),
+                  textAlign: TextAlign.center),
+              Text(
+                  "- schnelleres Laden der Seiten durch starke Optimierungen\n"
+                  "- ausfallsichere Bereiche mit lokalen Sicherungskopien\n"
+                  "- erweiterter Support aufgrund Verwendung offizieller Zugriffmöglichkeit\n"
+                  "- keine Content-blockierenden Addons vorhanden",
+                  style: TextStyle(fontSize: 18),
+                  textAlign: TextAlign.center),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        FlatButton(
+          child: Text("Download für Android"),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12))),
+          color: Color.fromARGB(255, 0, 135, 220),
+          onPressed: () {
+            launch(appDlAndroid);
+          },
+        ),
+        FlatButton(
+          child: Text("Ok"),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12))),
+          color: Color.fromARGB(255, 0, 135, 220),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ],
+    );
+
     Widget newsFeed() {
       return ListView(
         children: [
-          SizedBox(height: 10),
-          Text("NEWSFEED",
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center),
-          SizedBox(height: 10),
           Stack(
             children: [
               Center(
                 child: Container(
-                  width: MediaQuery.of(context).size.width / 2,
-                  height: 250,
+                  width: MediaQuery.of(context).size.width - 10,
                   decoration: BoxDecoration(
                       color: Colors.grey.shade800,
                       borderRadius: BorderRadius.circular(20)),
@@ -601,69 +723,21 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(height: 10),
-                      Text("Hey Du! Wir haben jetzt eine offizielle App!",
+                      Text("22. November 2020 - Landing-Page Update",
                           style: TextStyle(
                               fontSize: 24, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center),
                       SizedBox(height: 5),
                       Text(
-                          "Die App befindet sich derzeit noch in der Beta, kleinere Fehler können auftreten!",
+                          "- Anzeigefehler auf mobilen Endgeräten behoben\n"
+                          "- Breite des Newsfeeds angepasst\n"
+                          "- Einträge zur Navigationsleiste hinzugefügt: TestServer & App\n"
+                          "- automatische Höhenanpassung des Contents hinzugefügt\n"
+                          "- Neusortierung und (teilweise) Neuverfassung des Newsfeeds\n"
+                          "- Vereinheitlichung des Newsfeeds durch Platzhalter",
                           style: TextStyle(fontSize: 20),
                           textAlign: TextAlign.center),
-                      Text(
-                          "Solltest du Fehler finden, melde diese und sichere dir exklusive Vorteile :)",
-                          style: TextStyle(fontSize: 20),
-                          textAlign: TextAlign.center),
-                      SizedBox(height: 50),
-                      Text("Downloads:", style: TextStyle(fontSize: 22)),
-                      SizedBox(height: 5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          FlatButton(
-                            child: Text("Android (5.0+)",
-                                textAlign: TextAlign.center),
-                            onPressed: () {
-                              launch("https://bit.ly/34ZHvTS");
-                            },
-                            color: Color.fromARGB(255, 0, 135, 220),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          SizedBox(width: 5),
-                          FlatButton(
-                            child: Text("iOS (10+)\n(Coming Soon)",
-                                textAlign: TextAlign.center),
-                            onPressed: () {},
-                            color: Color.fromARGB(255, 0, 135, 220),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          SizedBox(width: 5),
-                          FlatButton(
-                            child: Text("Windows (XP+)\n(Coming Soon)",
-                                textAlign: TextAlign.center),
-                            onPressed: () {},
-                            color: Color.fromARGB(255, 0, 135, 220),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          SizedBox(width: 5),
-                          FlatButton(
-                            child: Text("macOS (Sierra+)\n(Coming Soon)",
-                                textAlign: TextAlign.center),
-                            onPressed: () {},
-                            color: Color.fromARGB(255, 0, 135, 220),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ],
-                      ),
+                      SizedBox(height: 10),
                     ],
                   ),
                 ),
@@ -675,8 +749,7 @@ class _HomeState extends State<Home> {
             children: [
               Center(
                 child: Container(
-                  width: MediaQuery.of(context).size.width / 2,
-                  height: 125,
+                  width: MediaQuery.of(context).size.width - 10,
                   decoration: BoxDecoration(
                       color: Colors.grey.shade800,
                       borderRadius: BorderRadius.circular(20)),
@@ -685,24 +758,16 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(height: 10),
-                      Text("Unser Minecraft TestServer",
-                          style: TextStyle(fontSize: 24),
+                      Text("07. November 2020 - Landing-Page Update",
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center),
+                      SizedBox(height: 5),
+                      Text(
+                          "- Es wurden kleinere, nicht weiter relevante, Bugs gefixed",
+                          style: TextStyle(fontSize: 20),
                           textAlign: TextAlign.center),
                       SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text("IP: mc.masterof13fps.com\nVersion 1.8 - 1.16.3",
-                              style: TextStyle(fontSize: 20),
-                              textAlign: TextAlign.center),
-                          SizedBox(width: 60),
-                          Text(
-                              "AntiCheats: AAC, NCP, ThotPatrol,\nSpartan, Matrix, Horizon, Negativity, Tired",
-                              style: TextStyle(fontSize: 20),
-                              textAlign: TextAlign.center),
-                        ],
-                      ),
                     ],
                   ),
                 ),
@@ -714,8 +779,110 @@ class _HomeState extends State<Home> {
             children: [
               Center(
                 child: Container(
-                  width: MediaQuery.of(context).size.width / 2,
-                  height: 250,
+                  width: MediaQuery.of(context).size.width - 10,
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade800,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 10),
+                      Text("07. November 2020 - TestServer Update",
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center),
+                      SizedBox(height: 5),
+                      Text(
+                          "- Alle AntiCheats wurden auf die neuste, verfügbare Version aktualisiert\n"
+                              "- Togglechat hinzugefügt zum clientseitigen deaktivieren des Chats (/togglechat)\n"
+                              "- Befehlsfilter eingebaut um AC-Devs von Lizensierungsmöglichkeiten abzuhalten",
+                          style: TextStyle(fontSize: 20),
+                          textAlign: TextAlign.center),
+                      SizedBox(height: 10),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 10),
+          Stack(
+            children: [
+              Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 10,
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade800,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 10),
+                      Text("04. August 2020 - Release des MC-TestServers",
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center),
+                      SizedBox(height: 10),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                                "Wir haben nun einen exklusiv für MasterOf13FPS Mitglieder gehaltenen TestServer!\n"
+                                "Nähere Infos findest Du oben in der Navigationsleiste unter 'TestServer' :)",
+                                style: TextStyle(fontSize: 20),
+                                textAlign: TextAlign.center),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 10),
+          Stack(
+            children: [
+              Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 10,
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade800,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 10),
+                      Text("27. September 2020 - Unsere offizielle App",
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center),
+                      SizedBox(height: 5),
+                      Text(
+                          "Wir haben nun eine offizielle App für mobile Endgeräte!\n"
+                          "Nähere Informationen gibt es oben in der Navigationsleiste unter 'App' :)",
+                          style: TextStyle(fontSize: 20),
+                          textAlign: TextAlign.center),
+                      SizedBox(height: 10),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 10),
+          Stack(
+            children: [
+              Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 10,
                   decoration: BoxDecoration(
                       color: Colors.grey.shade800,
                       borderRadius: BorderRadius.circular(20)),
@@ -743,124 +910,154 @@ class _HomeState extends State<Home> {
       body: Container(
         child: Stack(
           children: [
-            Row(
+            Column(
               children: [
                 Container(
-                  width: 400,
-                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  height: 60,
                   decoration: BoxDecoration(
                       color: Colors.grey.shade800,
                       borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
                           bottomRight: Radius.circular(20))),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      FlatButton(
-                        child: Text("Forum"),
-                        minWidth: 395,
-                        height: 46,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(20),
-                                bottomRight: Radius.circular(20))),
-                        color: Color.fromARGB(255, 0, 135, 220),
-                        onPressed: () {
-                          launch("https://masterof13fps.com/forum");
-                        },
-                      ),
-                      SizedBox(height: 5),
-                      FlatButton(
-                        child: Text("Spenden"),
-                        minWidth: 395,
-                        height: 46,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(20),
-                                bottomRight: Radius.circular(20))),
-                        color: Color.fromARGB(255, 0, 135, 220),
-                        onPressed: () {
-                          showDialog(
-                              barrierDismissible: false,
-                              context: context,
-                              builder: (BuildContext context) {
-                                return spenden;
-                              });
-                        },
-                      ),
-                      SizedBox(height: 5),
-                      FlatButton(
-                        child: Text("Social Media"),
-                        minWidth: 395,
-                        height: 46,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(20),
-                                bottomRight: Radius.circular(20))),
-                        color: Color.fromARGB(255, 0, 135, 220),
-                        onPressed: () {
-                          showDialog(
-                              barrierDismissible: false,
-                              context: context,
-                              builder: (BuildContext context) {
-                                return socialMedia;
-                              });
-                        },
-                      ),
-                      SizedBox(height: 5),
-                      FlatButton(
-                        child: Text("Was ist MasterOf13FPS?"),
-                        minWidth: 395,
-                        height: 46,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(20),
-                                bottomRight: Radius.circular(20))),
-                        color: Color.fromARGB(255, 0, 135, 220),
-                        onPressed: () {
-                          showDialog(
-                              barrierDismissible: false,
-                              context: context,
-                              builder: (BuildContext context) {
-                                return whatIsMasterOf13FPS;
-                              });
-                        },
-                      ),
-                      SizedBox(height: 5),
-                      FlatButton(
-                        child: Text("Downloads"),
-                        minWidth: 395,
-                        height: 46,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(20),
-                                bottomRight: Radius.circular(20))),
-                        color: Color.fromARGB(255, 0, 135, 220),
-                        onPressed: () {
-                          showDialog(
-                              barrierDismissible: false,
-                              context: context,
-                              builder: (BuildContext context) {
-                                return downloads;
-                              });
-                        },
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            FlatButton(
+                              child: Text("Forum"),
+                              minWidth: 100,
+                              height: 46,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              color: Color.fromARGB(255, 0, 135, 220),
+                              onPressed: () {
+                                launch("https://masterof13fps.com/forum");
+                              },
+                            ),
+                            SizedBox(width: 5),
+                            FlatButton(
+                              child: Text("TestServer"),
+                              minWidth: 100,
+                              height: 46,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              color: Color.fromARGB(255, 0, 135, 220),
+                              onPressed: () {
+                                showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return testServer;
+                                    });
+                              },
+                            ),
+                            SizedBox(width: 5),
+                            FlatButton(
+                              child: Text("App"),
+                              minWidth: 100,
+                              height: 46,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              color: Color.fromARGB(255, 0, 135, 220),
+                              onPressed: () {
+                                showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return app;
+                                    });
+                              },
+                            ),
+                            SizedBox(width: 5),
+                            FlatButton(
+                              child: Text("Spenden"),
+                              minWidth: 100,
+                              height: 46,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              color: Color.fromARGB(255, 0, 135, 220),
+                              onPressed: () {
+                                showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return spenden;
+                                    });
+                              },
+                            ),
+                            SizedBox(width: 5),
+                            FlatButton(
+                              child: Text("Social Media"),
+                              minWidth: 100,
+                              height: 46,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              color: Color.fromARGB(255, 0, 135, 220),
+                              onPressed: () {
+                                showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return socialMedia;
+                                    });
+                              },
+                            ),
+                            SizedBox(width: 5),
+                            FlatButton(
+                              child: Text("Was ist MasterOf13FPS?"),
+                              minWidth: 100,
+                              height: 46,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              color: Color.fromARGB(255, 0, 135, 220),
+                              onPressed: () {
+                                showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return whatIsMasterOf13FPS;
+                                    });
+                              },
+                            ),
+                            SizedBox(width: 5),
+                            FlatButton(
+                              child: Text("Downloads"),
+                              minWidth: 100,
+                              height: 46,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              color: Color.fromARGB(255, 0, 135, 220),
+                              onPressed: () {
+                                showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return downloads;
+                                    });
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
+                Padding(
+                  child: Image.asset("assets/images/logo.png",
+                      width: 380, height: 140, fit: BoxFit.fitWidth),
+                  padding: EdgeInsets.only(left: 10),
+                ),
                 Expanded(
-                    child: Stack(
-                  children: [
-                    newsFeed(),
-                  ],
-                )),
+                  child: newsFeed(),
+                ),
               ],
-            ),
-            Padding(
-              child: Image.asset("assets/images/logo.png",
-                  width: 380, height: 200, fit: BoxFit.fitWidth),
-              padding: EdgeInsets.only(left: 10),
             ),
           ],
         ),
